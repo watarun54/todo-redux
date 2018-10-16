@@ -5,7 +5,7 @@ import MainContainer from '../components/MainContainer';
 
 const mapStateToProps = state => {
   return {
-    todo: state.todo,
+    todo: state.todo
   }
 }
 
@@ -14,8 +14,8 @@ const mapDispatchToProps = dispatch => {
     onMount: () => {
         dispatch(actions.fetchList());
     },
-    onCreate: (item) => {
-        dispatch(actions.createProduct(item));
+    onCreate: (item, selectedPriority) => {
+        dispatch(actions.createProduct(item, selectedPriority));
     },
     onDelete: (id) => {
         dispatch(actions.deleteProduct(id));

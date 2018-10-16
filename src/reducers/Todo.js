@@ -1,5 +1,29 @@
 const initialState = {
-  todoList: []
+  todoList: [],
+  emeImpList: [],
+  emeList: [],
+  impList: [],
+}
+
+const getEmeImpList = (todoList) => {
+  const emeImpList = todoList.filter((ele) => {
+      return (ele.priority === 0);
+    })
+  return emeImpList;
+}
+
+const getEmeList = (todoList) => {
+  const emeList = todoList.filter((ele) => {
+      return (ele.priority === 1);
+    })
+  return emeList;
+}
+
+const getImpList = (todoList) => {
+  const impList = todoList.filter((ele) => {
+      return (ele.priority === 2);
+    })
+  return impList;
 }
 
 export const todoReducer = (state = initialState, action) => {
@@ -8,6 +32,9 @@ export const todoReducer = (state = initialState, action) => {
     case 'START_REQUEST':
       return {
         todoList: [],
+        emeImpList: [],
+        emeList: [],
+        impList: [],
         error: false
       };
 
@@ -16,15 +43,11 @@ export const todoReducer = (state = initialState, action) => {
         ? { ...state, error: true }
         : {
             ...state,
-            todoList: action.payload.response
+            todoList: action.payload.response,
+            emeImpList: getEmeImpList(action.payload.response),
+            emeList: getEmeList(action.payload.response),
+            impList: getImpList(action.payload.response),
         };
-
-    /* case 'ADD_TODO':
-      const item = {text: action.payload.item};
-      const newState = Object.assign({}, state);
-      newState.todoList.push(item);
-      return newState;
-    */
 
     default:
       return state;

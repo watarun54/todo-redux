@@ -7,13 +7,14 @@ class FormContainer extends React.Component {
         super(props);
         this.state = {
             item: '',
-            dropdownOpen: false
+            dropdownOpen: false,
+            selectedPriority: 0
         }
     }
 
     handleSubmit = () => {
-        this.props.handleSubmit(this.state.item);
-        this.setState({ item: '' });
+        this.props.handleSubmit(this.state.item, this.state.selectedPriority);
+        this.setState({ item: '', selectedPriority: 0 });
     }
 
     toggleDropDown = () => {
@@ -21,6 +22,10 @@ class FormContainer extends React.Component {
           dropdownOpen: !this.state.dropdownOpen
         });
       }
+
+    onRadioBtnClick = (selected) => {
+        this.setState({selectedPriority: selected});
+    }
 
     render() {
         return(
@@ -32,9 +37,9 @@ class FormContainer extends React.Component {
                             優先順位
                         </DropdownToggle>
                         <DropdownMenu>
-                            <DropdownItem>Action</DropdownItem>
-                            <DropdownItem>Action</DropdownItem>
-                            <DropdownItem>Action</DropdownItem>
+                            <DropdownItem className="eme-imp-button" onClick={() => this.onRadioBtnClick(0)}>緊急＆重要</DropdownItem>
+                            <DropdownItem className="eme-button" onClick={() => this.onRadioBtnClick(1)}>緊急</DropdownItem>
+                            <DropdownItem className="imp-button" onClick={() => this.onRadioBtnClick(2)}>重要</DropdownItem>
                         </DropdownMenu>
                     </InputGroupButtonDropdown>
                     <InputGroupAddon addonType="prepend"><Button onClick={this.handleSubmit}>追加</Button></InputGroupAddon>

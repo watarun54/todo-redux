@@ -1,5 +1,7 @@
 import React from 'react';
-import EmergencyAndImportant from './card-components/EmergencyAndImportant.js';
+import EmergencyAndImportant from './card-components/EmergencyAndImportant';
+import Emergency from "./card-components/Emergency";
+import Important from "./card-components/Important";
 import FormContainer from './FormContainer';
 import { Container, Row, Col } from 'reactstrap';
 
@@ -8,6 +10,7 @@ class MainContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      
     }
   }
 
@@ -15,8 +18,8 @@ class MainContainer extends React.Component {
     this.props.onMount();
   }
 
-  handleSubmit = (item) => {
-    this.props.onCreate(item);
+  handleSubmit = (item, selectedPriority) => {
+    this.props.onCreate(item, selectedPriority);
   }
 
   handleDelete = (id) => {
@@ -27,7 +30,27 @@ class MainContainer extends React.Component {
     this.props.onUpdate(id, updateText);
   }
 
-  render() {    
+  todoListToEmeImpList = () => {
+    let todoList = this.props.todo.todoList;
+    let emeImpList = todoList.filter((ele) => {
+        return (ele.priority === 1);
+      })
+    this.setState({ emeImpList: emeImpList });
+  }
+
+  todoListToEmeList = () => {
+
+  }
+
+  todoListToImpList = () => {
+
+  }
+
+  render() {
+    console.log("todoList: " + this.props.todo.todoList);
+    console.log("emeImpList: " + this.props.todo.emeImpList);
+    console.log("emeList: " + this.props.todo.emeList);
+    console.log("impList: " + this.props.todo.impList);
     return (
         <div>
           <FormContainer handleSubmit={this.handleSubmit} />
@@ -37,7 +60,7 @@ class MainContainer extends React.Component {
               <Col>
                 <h2>緊急＆重要</h2>
                 <div className="itemList">
-                {this.props.todo.todoList.map((item) => {
+                {this.props.todo.emeImpList.map((item) => {
                   return (
                     <EmergencyAndImportant key={item.id} item={item} handleDelete={this.handleDelete} handleUpdate={this.handleUpdate}/>
                   )
@@ -47,9 +70,9 @@ class MainContainer extends React.Component {
               <Col>
                 <h2>緊急</h2>
                 <div className="itemList">
-                {this.props.todo.todoList.map((item) => {
+                {this.props.todo.emeList.map((item) => {
                   return (
-                    <EmergencyAndImportant key={item.id} item={item} handleDelete={this.handleDelete} handleUpdate={this.handleUpdate}/>
+                    <Emergency key={item.id} item={item} handleDelete={this.handleDelete} handleUpdate={this.handleUpdate}/>
                   )
                 })}
                 </div>
@@ -57,9 +80,9 @@ class MainContainer extends React.Component {
               <Col>
                 <h2>重要</h2>
                 <div className="itemList">
-                {this.props.todo.todoList.map((item) => {
+                {this.props.todo.impList.map((item) => {
                   return (
-                    <EmergencyAndImportant key={item.id} item={item} handleDelete={this.handleDelete} handleUpdate={this.handleUpdate}/>
+                    <Important key={item.id} item={item} handleDelete={this.handleDelete} handleUpdate={this.handleUpdate}/>
                   )
                 })}
                 </div>
