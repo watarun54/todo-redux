@@ -20,8 +20,8 @@ const mapDispatchToProps = dispatch => {
     onDelete: (id) => {
         dispatch(actions.deleteProduct(id));
     },
-    onUpdate: (id, item) => {
-        dispatch(actions.updateProduct(id, item));
+    onUpdate: (id, item, selectedPriority) => {
+        dispatch(actions.updateProduct(id, item, selectedPriority));
     },
 }
 }

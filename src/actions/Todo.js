@@ -49,7 +49,7 @@ export const createProduct = (product, selectedPriority) => {
     return async (dispatch, getState) => {
         const todo = getState().todo;
 
-        axios.post(`${API_URL}`, {name: "created", text: product, priority:selectedPriority})
+        axios.post(`${API_URL}`, {text: product, priority:selectedPriority, name: "created"})
             .then((res) => {
                 console.log(res.data);
                 const newData = update(todo.todoList, {$unshift:[res.data.data]})
@@ -83,11 +83,11 @@ export const deleteProduct = (id) => {
     }
 }
 
-export const updateProduct = (id, product) => {
+export const updateProduct = (id, product, selectedPriority) => {
+    console.log("あ");
     return async (dispatch, getState) => {
         const todo = getState().todo;
-
-        axios.put(`${API_URL}/${id}`,{name: "updated", text: product ,priority: 0})
+        axios.put(`${API_URL}/${id}`,{text: product ,priority: selectedPriority, name: "updated"})
             .then((res) => {
                 const productIndex = todo.todoList.findIndex(x => x.id ===id)
                 const newData = update(todo.todoList, {[productIndex]: {$set: res.data.data}})

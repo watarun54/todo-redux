@@ -26,24 +26,8 @@ class MainContainer extends React.Component {
     this.props.onDelete(id);
   }
 
-  handleUpdate = (id, updateText) => {
-    this.props.onUpdate(id, updateText);
-  }
-
-  todoListToEmeImpList = () => {
-    let todoList = this.props.todo.todoList;
-    let emeImpList = todoList.filter((ele) => {
-        return (ele.priority === 1);
-      })
-    this.setState({ emeImpList: emeImpList });
-  }
-
-  todoListToEmeList = () => {
-
-  }
-
-  todoListToImpList = () => {
-
+  handleUpdate = (id, updateText, updatedPriority) => {
+    this.props.onUpdate(id, updateText, updatedPriority);
   }
 
   render() {

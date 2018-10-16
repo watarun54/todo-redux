@@ -34,7 +34,7 @@ class FormContainer extends React.Component {
                     <Input value={this.state.item} placeholder="Enter text" onChange={(e) => this.setState({ item: e.target.value })}/>
                     <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
                         <DropdownToggle caret>
-                            優先順位
+                            
                         </DropdownToggle>
                         <DropdownMenu>
                             <DropdownItem className="eme-imp-button" onClick={() => this.onRadioBtnClick(0)}>緊急＆重要</DropdownItem>
