@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
 // import Todo from './components/Todo';
-import Todo from './containers/Todo';
+import MainContainer from './containers/MainContainer';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Todo />
+        <MainContainer />
       </div>
     );
   }
 }
 
-export default App;
+export default App
