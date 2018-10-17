@@ -32,16 +32,16 @@ class Important extends React.Component {
     render() {
         return (
             <div>
-                <Card style={{ backgroundColor: '#66cdaa', borderColor: '#66cdaa' }}>
+                <Card className="imp-card">
                     <CardBody>
                         <CardText>{this.props.item.text}</CardText>
                         <FormGroup>
-                            <Input value={this.state.updateText} placeholder={this.props.item.text} onChange={e => this.setState({ updateText: e.target.value })}/>
+                            <Input value={this.state.updateText} placeholder="Update task" onChange={e => this.setState({ updateText: e.target.value })}/>
                         </FormGroup>
                         <div>
-                            <DropdownBtn handleSetPriority={this.handleSetPriority}/>{' '}
-                            <Button onClick={this.handleUpdate} size="sm">更新</Button>{' '}
-                            <Button onClick={this.handleDelete} size="sm">削除</Button>
+                            <DropdownBtn selectedPriority={this.state.selectedPriority} handleSetPriority={this.handleSetPriority}/>{' '}
+                            <Button onClick={this.handleUpdate} size="sm">Update</Button>{' '}
+                            <Button onClick={this.handleDelete} size="sm">Delete</Button>
                         </div>
                     </CardBody>
                 </Card>

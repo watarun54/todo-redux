@@ -38,7 +38,7 @@ class MainContainer extends React.Component {
     return (
         <div>
           <FormContainer handleSubmit={this.handleSubmit} />
-
+          <div className="main-container">
           <Container>
             <Row>
               <Col>
@@ -73,7 +73,7 @@ class MainContainer extends React.Component {
               </Col>
             </Row>
           </Container>
-          
+          </div>
         </div>
     );
   }

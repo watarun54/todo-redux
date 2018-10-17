@@ -7,7 +7,32 @@ class DropdownBtn extends React.Component {
         super(props);
         this.state = {
             dropdownOpen: false,
+            selectedPriority: this.props.selectedPriority,
+            selectedColor: {},
         }
+    }
+
+    onChangeColor = (selectedPriority) => {
+        if (selectedPriority === 0) {
+            return {
+                "backgroundColor": "red"
+            }
+        }
+        if (selectedPriority === 1) {
+            return {
+                "backgroundColor": "yellow"
+            }
+        }
+        if (selectedPriority === 2) {
+            return {
+                "backgroundColor": "green"
+            }
+        }
+    }
+
+    componentWillMount() {
+        let selectedColor = this.onChangeColor(this.state.selectedPriority);
+        this.setState({selectedColor: selectedColor});
     }
 
     toggleDropDown = () => {
@@ -18,18 +43,20 @@ class DropdownBtn extends React.Component {
 
     onRadioBtnClick = (selected) => {
         this.props.handleSetPriority(selected);
+        let selectedColor = this.onChangeColor(selected);
+        this.setState({selectedColor: selectedColor});
     }
 
     render() {
         return (
             <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown} size="sm">
-                <DropdownToggle caret>
+                <DropdownToggle caret style={this.state.selectedColor}>
                     
                 </DropdownToggle>
                 <DropdownMenu>
-                    <DropdownItem className="eme-imp-button" onClick={() => this.onRadioBtnClick(0)}>緊急＆重要</DropdownItem>
-                    <DropdownItem className="eme-button" onClick={() => this.onRadioBtnClick(1)}>緊急</DropdownItem>
-                    <DropdownItem className="imp-button" onClick={() => this.onRadioBtnClick(2)}>重要</DropdownItem>
+                    <DropdownItem className="eme-imp-button" onClick={() => this.onRadioBtnClick(0)}></DropdownItem>
+                    <DropdownItem className="eme-button" onClick={() => this.onRadioBtnClick(1)}></DropdownItem>
+                    <DropdownItem className="imp-button" onClick={() => this.onRadioBtnClick(2)}></DropdownItem>
                 </DropdownMenu>
             </ButtonDropdown>
         )

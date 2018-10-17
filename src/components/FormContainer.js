@@ -1,4 +1,5 @@
 import React from 'react';
+import DropdownBtn from './card-components/DropdownBtn';
 import { InputGroup, InputGroupAddon, InputGroupButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button, Input} from 'reactstrap'; 
 
 
@@ -7,7 +8,6 @@ class FormContainer extends React.Component {
         super(props);
         this.state = {
             item: '',
-            dropdownOpen: false,
             selectedPriority: 0
         }
     }
@@ -17,21 +17,17 @@ class FormContainer extends React.Component {
         this.setState({ item: '', selectedPriority: 0 });
     }
 
-    toggleDropDown = () => {
-        this.setState({
-          dropdownOpen: !this.state.dropdownOpen
-        });
-      }
-
-    onRadioBtnClick = (selected) => {
-        this.setState({selectedPriority: selected});
+    handleSetPriority = (selectedPriority) => {
+        this.setState({ selectedPriority: selectedPriority});
     }
 
     render() {
         return(
-            <div>
+            <div className="new-task-container">
                 <InputGroup>
-                    <Input value={this.state.item} placeholder="Enter text" onChange={(e) => this.setState({ item: e.target.value })}/>
+                    <Input value={this.state.item} placeholder="New task" onChange={(e) => this.setState({ item: e.target.value })}/>
+                    <DropdownBtn selectedPriority={this.state.selectedPriority} handleSetPriority={this.handleSetPriority}/>
+                    {/*
                     <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
                         <DropdownToggle caret>
                             
@@ -42,7 +38,9 @@ class FormContainer extends React.Component {
                             <DropdownItem className="imp-button" onClick={() => this.onRadioBtnClick(2)}>重要</DropdownItem>
                         </DropdownMenu>
                     </InputGroupButtonDropdown>
-                    <InputGroupAddon addonType="prepend"><Button onClick={this.handleSubmit}>追加</Button></InputGroupAddon>
+                
+                    */}
+                    <InputGroupAddon addonType="prepend"><Button onClick={this.handleSubmit}>Add</Button></InputGroupAddon>
                 </InputGroup>
             </div>
         )
