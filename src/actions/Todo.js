@@ -84,7 +84,6 @@ export const deleteProduct = (id) => {
 }
 
 export const updateProduct = (id, product, selectedPriority) => {
-    console.log("あ");
     return async (dispatch, getState) => {
         const todo = getState().todo;
         axios.put(`${API_URL}/${id}`,{text: product ,priority: selectedPriority, name: "updated"})

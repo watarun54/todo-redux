@@ -30,7 +30,6 @@ class EmergencyAndImportant extends React.Component {
     }
 
     render() {
-        console.log(this.state.selectedPriority);
         return (
             <div>
                 <Card className="eme-imp-card">
