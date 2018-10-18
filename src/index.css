@@ -19,12 +19,37 @@ code {
 
 /* FormContainerのデザイン　*/
 .new-task-container {
-  padding: 28px;
+  padding: 28px 0px 42px 0px;
 }
 
 /* MainContainerのデザイン */
-.main-container {
+.sp-main-container {
+  padding:42px 0 38px 0;
+}
+
+.pc-main-container {
   padding-bottom: 38px;
+}
+
+.pc-main-container h4 {
+  margin: 0;
+  font-size: 24px;
+  border-bottom: solid;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  color: #6c757d;
+}
+
+.nav-area {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  background-color: #f5f5dc;
+}
+
+.nav-area .nav-item {
+  cursor: pointer;
+  color: #6c757d;
 }
 
 /* 各カードのリストをスクロール可能に */
