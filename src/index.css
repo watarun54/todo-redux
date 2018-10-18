@@ -71,7 +71,7 @@ div.eme-imp-card.card {
 }
 
 div.eme-card.card { 
-  background-color: #f0e68c;
+  background-color: #f4a460;
   border-color: #f5f5dc;
 }
 
@@ -106,7 +106,7 @@ div.dropdown-menu.show {
 }
 
 .dropdown-menu .eme-button {
-  background-color: yellow;
+  background-color: #ffa500;
 }
 
 .dropdown-menu .eme-button:hover {
