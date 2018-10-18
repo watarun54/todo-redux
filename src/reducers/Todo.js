@@ -1,11 +1,29 @@
-const getList = response => {
-  const list = response.posts;
-  console.log(list);
-  return list;
-};
-
 const initialState = {
-  todoList: []
+  todoList: [],
+  emeImpList: [],
+  emeList: [],
+  impList: [],
+}
+
+const getEmeImpList = (todoList) => {
+  const emeImpList = todoList.filter((ele) => {
+      return (ele.priority === 0);
+    })
+  return emeImpList;
+}
+
+const getEmeList = (todoList) => {
+  const emeList = todoList.filter((ele) => {
+      return (ele.priority === 1);
+    })
+  return emeList;
+}
+
+const getImpList = (todoList) => {
+  const impList = todoList.filter((ele) => {
+      return (ele.priority === 2);
+    })
+  return impList;
 }
 
 export const todoReducer = (state = initialState, action) => {
@@ -13,27 +31,24 @@ export const todoReducer = (state = initialState, action) => {
 
     case 'START_REQUEST':
       return {
-        // categoryを状態に保持
         todoList: [],
+        emeImpList: [],
+        emeList: [],
+        impList: [],
         error: false
       };
 
-    // データ受信
     case 'RECEIVE_DATA':
       return action.payload.error
         ? { ...state, error: true }
         : {
             ...state,
-            todoList: getList(action.payload.response)
+            todoList: action.payload.response,
+            emeImpList: getEmeImpList(action.payload.response),
+            emeList: getEmeList(action.payload.response),
+            impList: getImpList(action.payload.response),
         };
 
-    case 'ADD_TODO':
-      // 新しく追加するTODO
-      const todo = {text: action.payload.todo};
-      // stateを複製して追加
-      const newState = Object.assign({}, state);
-      newState.todoList.push(todo);
-      return newState;
     default:
       return state;
   }
