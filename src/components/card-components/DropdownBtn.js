@@ -20,7 +20,7 @@ class DropdownBtn extends React.Component {
         }
         if (selectedPriority === 1) {
             return {
-                "backgroundColor": "yellow"
+                "backgroundColor": "#ffa500"
             }
         }
         if (selectedPriority === 2) {
